@@ -16,7 +16,9 @@ class PizzaController extends Controller
     public function index()
     {
         // Pizzas list
-        return view('admin.pizza.index');
+
+        $pizzas = Pizza::get();
+        return view('admin.pizza.index', ['pizzas'=>$pizzas]);
     }
     
     /**
@@ -53,7 +55,7 @@ class PizzaController extends Controller
             'image_url' => $path,
         ]);
 
-        return route('admin.pizza.index');
+        return redirect()->route('admin.pizza.index')->with('message', 'Pizza added successfully');
     }
 
     /**
