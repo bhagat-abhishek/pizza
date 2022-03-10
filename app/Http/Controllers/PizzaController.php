@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PizzaStoreRequest;
 use Illuminate\Http\Request;
 
 class PizzaController extends Controller
@@ -14,9 +15,8 @@ class PizzaController extends Controller
     public function index()
     {
         //
-        return view('admin.pizza.index');
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +24,8 @@ class PizzaController extends Controller
      */
     public function create()
     {
-        //
+        // Index the create page
+        return view('admin.pizza.create');
     }
 
     /**
@@ -33,9 +34,10 @@ class PizzaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PizzaStoreRequest $request)
     {
         //
+        dd($request->all());
     }
 
     /**

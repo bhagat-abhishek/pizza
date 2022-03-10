@@ -26,4 +26,13 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 
-Route::get('/pizza', [PizzaController::class, 'index'])->name('pizza');
+
+
+// Admin Url Routes
+Route::prefix('admin')->name('admin.')->group(function () {
+    
+    Route::get('/pizza', [PizzaController::class, 'index'])->name('pizza.create');
+    Route::get('/pizza/create', [PizzaController::class, 'create'])->name('pizza.create');
+    Route::post('/pizza/create', [PizzaController::class, 'store'])->name('pizza.store');
+
+});
