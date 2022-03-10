@@ -27,9 +27,9 @@ class PizzaStoreRequest extends FormRequest
             // Validate the Pizza Create
             'name' => 'required|string|min:3|max:30',
             'description' => 'required|min:3|max:300',
-            'small_price' => 'required|number',
-            'medium_price' => 'required|number',
-            'large_price' => 'required|number',
+            'small_price' => 'required|numeric',
+            'medium_price' => 'required|numeric',
+            'large_price' => 'required|numeric',
             'category' => 'required',
             'image' => "required|mimes:png,jpeg,jpg",
 
