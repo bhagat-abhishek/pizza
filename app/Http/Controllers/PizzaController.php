@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PizzaStoreRequest;
+use App\Models\Pizza;
 use Illuminate\Http\Request;
 
 class PizzaController extends Controller
@@ -14,7 +15,8 @@ class PizzaController extends Controller
      */
     public function index()
     {
-        //
+        // Pizzas list
+        return view('admin.pizza.index');
     }
     
     /**
@@ -36,8 +38,22 @@ class PizzaController extends Controller
      */
     public function store(PizzaStoreRequest $request)
     {
-        //
-        dd($request->all());
+        // Storing pizza info to database
+
+        // Image store path
+        $path = $request->image->store('public/pizzas');
+
+        Pizza::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'small_price' => $request->small_price,
+            'medium_price' => $request->medium_price,
+            'large_price' => $request->large_price,
+            'category' => $request->category,
+            'image_url' => $path,
+        ]);
+
+        return route('admin.pizza.index');
     }
 
     /**
