@@ -35,5 +35,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/pizza', [PizzaController::class, 'index'])->name('pizza.index');
     Route::get('/pizza/create', [PizzaController::class, 'create'])->name('pizza.create');
     Route::post('/pizza/create', [PizzaController::class, 'store'])->name('pizza.store');
+    Route::get('/pizza/edit/{id}', [PizzaController::class, 'edit'])->name('pizza.edit');
+    Route::put('/pizza/update/{id}', [PizzaController::class, 'update'])->name('pizza.update');
+    Route::delete('/pizza/delete/{id}', [PizzaController::class, 'destroy'])->name('pizza.destroy');
 
 });

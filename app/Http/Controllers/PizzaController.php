@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PizzaStoreRequest;
+use App\Http\Requests\PizzaUpdateRequest;
 use App\Models\Pizza;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class PizzaController extends Controller
     {
         // Pizzas list
 
-        $pizzas = Pizza::get();
+        $pizzas = Pizza::paginate(5);
         return view('admin.pizza.index', ['pizzas'=>$pizzas]);
     }
     
@@ -77,7 +78,9 @@ class PizzaController extends Controller
      */
     public function edit($id)
     {
-        //
+        // return edit view
+        $pizza = Pizza::find($id);
+        return view('admin.pizza.edit', ['pizza'=>$pizza]);
     }
 
     /**
@@ -87,9 +90,29 @@ class PizzaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PizzaUpdateRequest $request, $id)
     {
-        //
+        // Updating the pizza
+
+        $pizza = Pizza::find($id);
+
+        if($request->has('image')){
+            $path = $request->image->store('public/pizza');
+        } else {
+            $path = $pizza->image_url;
+        }
+        $pizza = new Pizza();
+        $pizza->name = $request->name;
+        $pizza->description = $request->description;
+        $pizza->small_price = $request->small_price;
+        $pizza->medium_price = $request->medium_price;
+        $pizza->large_price = $request->large_price;
+        $pizza->category = $request->category;
+        $pizza->image_url = $path;
+        $pizza->save();
+
+        return redirect()->route('admin.pizza.index')->with('message', 'Pizza updated successfully.');
+
     }
 
     /**
@@ -100,6 +123,7 @@ class PizzaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Pizza::find($id)->delete();
+        return redirect()->route('admin.pizza.index')->with('message', 'Pizza deleted successfully.');
     }
 }
