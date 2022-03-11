@@ -30,7 +30,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 // Admin Url Routes
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::middleware('auth', 'is_admin')->prefix('admin')->name('admin.')->group(function () {
     
     Route::get('/pizza', [PizzaController::class, 'index'])->name('pizza.index');
     Route::get('/pizza/create', [PizzaController::class, 'create'])->name('pizza.create');
