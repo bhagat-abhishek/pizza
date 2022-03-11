@@ -7,6 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     {{ __('All pizzas') }}
+                    <a href="{{ route('admin.pizza.create') }}" class="btn btn-orange" style="float: right; margin-left: 10px;">Orders</a> &nbsp;&nbsp;&nbsp;
                     <a href="{{ route('admin.pizza.create') }}" class="btn btn-success" style="float: right;">Add Pizza</a>
                 </div>
 

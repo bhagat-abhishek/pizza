@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserOrderController;
 use App\Http\Controllers\PizzaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -39,4 +40,6 @@ Route::middleware('auth', 'is_admin')->prefix('admin')->name('admin.')->group(fu
     Route::put('/pizza/update/{id}', [PizzaController::class, 'update'])->name('pizza.update');
     Route::delete('/pizza/delete/{id}', [PizzaController::class, 'destroy'])->name('pizza.destroy');
 
+    Route::get('/order', [UserOrderController::class, 'index'])->name('order.index');
+    Route::post('/order/status/{id}', [UserOrderController::class, 'status'])->name('order.status');
 });
