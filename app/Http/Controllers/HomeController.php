@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -22,7 +24,12 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        return view('home');
+    {   
+        if(Auth::user()->is_admin == 1) {
+            return redirect()->route('admin.order.index');
+        }
+
+        $orders = Order::latest()->where('user_id', Auth::user()->id)->get();
+        return view('home', ['orders' => $orders]);
     }
 }

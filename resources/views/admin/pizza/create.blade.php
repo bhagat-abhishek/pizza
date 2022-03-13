@@ -55,7 +55,7 @@
                                 <option value=""></option>
                                 <option value="vegetarian">Vegetarian Pizza</option>
                                 <option value="non-vegetarian">Non Vegetarian Pizza</option>
-                                <option value="traditional">Traditional Pizza</option>
+                                <option value="tradational">Traditional Pizza</option>
                             </select>
                         </div>
                         <div class="form-group">

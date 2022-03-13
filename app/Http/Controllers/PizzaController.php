@@ -101,7 +101,6 @@ class PizzaController extends Controller
         } else {
             $path = $pizza->image_url;
         }
-        $pizza = new Pizza();
         $pizza->name = $request->name;
         $pizza->description = $request->description;
         $pizza->small_price = $request->small_price;

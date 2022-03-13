@@ -53,7 +53,7 @@
                             <img src="{{ Storage::url($pizza->image_url) }}" width="80px">
                         </div>
                         <div class="form-group mt-3">
-                            <button class="btn btn-primary" type="submit">Create</button>
+                            <button class="btn btn-primary" type="submit">Update</button>
                             <a href="{{ route('admin.pizza.index') }}" class="btn btn-secondary">Back</a>
                         </div>
                     </form>
