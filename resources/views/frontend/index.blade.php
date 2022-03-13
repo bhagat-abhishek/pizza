@@ -15,6 +15,7 @@
                             <input type="submit" value="non-vegetarian" name="category" class="list-group-item list-group-item-action">
                             <input type="submit" value="tradational" name="category" class="list-group-item list-group-item-action">
                         </form>
+                        <h1 class="text-center">{{ count($pizzas)}} Pizzas</h1>
                     </ul>
                 </div>
             </div>

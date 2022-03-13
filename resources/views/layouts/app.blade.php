@@ -52,6 +52,30 @@
                                 </li>
                             @endif
                         @else
+                            @if(Auth::user()->is_admin == 0) 
+
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('home') }}">{{ __('Your Orders') }}</a>
+                            </li>
+
+                            @endif
+
+                            @if(Auth::user()->is_admin == 1) 
+
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.order.index') }}">{{ __('User Orders') }}</a>
+                            </li>
+
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.pizza.index') }}">{{ __('All Pizzas') }}</a>
+                            </li>
+
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.customers') }}">{{ __('All Users') }}</a>
+                            </li>
+                            
+                            @endif
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

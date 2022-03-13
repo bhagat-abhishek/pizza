@@ -47,4 +47,7 @@ Route::middleware('auth', 'is_admin')->prefix('admin')->name('admin.')->group(fu
     // Order
     Route::get('/order', [UserOrderController::class, 'index'])->name('order.index');
     Route::post('/order/status/{id}', [UserOrderController::class, 'status'])->name('order.status');
+
+    // Customers
+    Route::get('/customers', [UserOrderController::class, 'customers'])->name('customers');
 });

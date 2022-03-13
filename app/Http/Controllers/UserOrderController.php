@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserOrderController extends Controller
@@ -87,5 +88,10 @@ class UserOrderController extends Controller
     public function status(Request $request, $id) {
         Order::where('id',$id)->update(['status'=>$request->status]);
         return back();
+    }
+
+    public function customers() {
+        $customers = User::where('is_admin', 0)->get();
+        return view('admin.customers.index', ['customers'=>$customers, 'i'=>1]);
     }
 }
